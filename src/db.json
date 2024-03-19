@@ -1,0 +1,16 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "usuario1",
+        "password": "senha1"
+      },
+      {
+        "id": 2,
+        "username": "usuario2",
+        "password": "senha2"
+      }
+    ],
+    "connectedAccounts": []
+  }
+  
