@@ -15,7 +15,7 @@ route.post("/login", login);
 route.post("/signup", signUp);
 
 route.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'Wow! My first project in TypeScript!!!' })
+  res.json({ message: 'Welcome to the CRM API, Its already alive !!!' })
 })
 
 app.use(route)
