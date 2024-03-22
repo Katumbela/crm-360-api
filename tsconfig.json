@@ -4,9 +4,14 @@
     "module": "commonjs",
     "rootDir": "./",
     //"outDir": "./",       
+    "outDir": "./dist",
+    "allowJs": true,
     "esModuleInterop": true,                    
     "forceConsistentCasingInFileNames": true,
-    "strict": true,            
+    "strict": false,            
     "skipLibCheck": true
-  }
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
 }
