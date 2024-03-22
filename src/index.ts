@@ -3,6 +3,7 @@ import { Router, Request, Response } from 'express';
 import { login } from './controllers';
 import { signUp } from './controllers/signup.controller';
 import cors from 'cors'; // Importe o módulo 'cors'
+import { GetUserById } from './independentServices/get-user-by-id';
 
 const app = express();
 
@@ -18,7 +19,9 @@ app.use(cors({
 
 route.post("/login", login);
 
-route.post("/signup", signUp);
+route.post("/signup", signUp);Í
+
+route.get("/user/:id", GetUserById);
 
 route.get('/', (req: Request, res: Response) => {
   res.json({ message: 'Welcome to the CRM API, Its already alive !!!' });
