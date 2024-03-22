@@ -1,6 +1,5 @@
 // index.js
 const express = require("express")
-const messageRouter = require('./routers/messageRouter')
 const { startWhatsAppConnection, getQRCode } = require('./services/WhatsappClient');
 
 const app = express()

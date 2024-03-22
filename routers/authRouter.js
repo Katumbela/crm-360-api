@@ -1,8 +1,7 @@
 const express = require('express');
 const router = new express.Router();
-const db = require('../db.json');
 
-router.post('/auth', (req, res) => {
+router.post('/login', (req, res) => {
   const { username, password } = req.body;
   // Aqui você pode adicionar lógica para autenticação
   // Por exemplo, verificar se o usuário e a senha correspondem a um registro na base de dados
