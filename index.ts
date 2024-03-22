@@ -20,6 +20,6 @@ route.get('/', (req: Request, res: Response) => {
 
 app.use(route)
 
-const PORT = 3030
+const PORT = 3035
 
 app.listen(PORT, () => `Server running on port ${PORT}`)
