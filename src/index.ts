@@ -10,7 +10,11 @@ const route = Router();
 
 app.use(express.json());
 
-app.use(cors()); // Use o middleware de CORS em todas as rotas
+app.use(cors({
+  origin: '*', // Permitir solicitações de todas as origens, você pode restringir isso para as origens específicas que deseja permitir
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos na solicitação
+}));
 
 route.post("/login", login);
 
