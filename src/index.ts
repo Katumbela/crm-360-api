@@ -19,7 +19,7 @@ app.use(cors({
 
 route.post("/login", login);
 
-route.post("/signup", signUp);Í
+route.post("/signup", signUp);
 
 route.get("/user/:id", GetUserById);
 
