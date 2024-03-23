@@ -24,7 +24,7 @@ route.post("/signup", signUp);
 route.get("/user/:id", GetUserById);
 
 route.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'Welcome to the CRM API, Its already alive !!!' });
+  res.json({ message: 'Welcome to the CRM API, Its already alive !!! \n Signup in the main platform to get Started' });
 });
 
 app.use(route);
