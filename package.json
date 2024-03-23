@@ -6,6 +6,7 @@
   "dependencies": {
     "@types/swagger-ui-express": "^4.1.6",
     "axios": "^1.6.8",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.1",
     "firebase": "^10.9.0",
@@ -24,7 +25,6 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.3"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Katumbela/crm-360-api.git"
@@ -32,8 +32,9 @@
   "keywords": [
     "vercel-typescript-express-api",
     "node",
-    "mongo",
+    "firebase",
     "express",
+    "CRM 360 Gokside",
     "javascript",
     "server"
   ],
