@@ -38,6 +38,7 @@ class FirebaseUserSignUpRepository  implements UserSignUpRepository {
         password: password, // Adiciona a senha
         address: address || "", // Adiciona o endereço
         team: team || "", // Adiciona o time
+        phone: 0,
         city: city || "", // Adiciona a cidade
         country: country || "", // Adiciona o país
         plan: plan || "Free", // Adiciona o plano

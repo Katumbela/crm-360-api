@@ -7,6 +7,7 @@ export interface UserEntity {
   password: string;
   address: string;
   team: string;
+  phone: number;
   city: string;
   country: string;
   plan: "Free" | "Basic" | "Premium";
