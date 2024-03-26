@@ -1,13 +1,24 @@
 import axios from "axios";
 import "dotenv/config";
 import { Request, Response } from "express";
-import { hack } from "../dummy/hack-query";
+import Sentiment from "sentiment";
 
-// Rota para busca de menções da marca no Twitter
+const sentiment = new Sentiment();
+
+function getSentiment(snippet: string): string {
+  const result = sentiment.analyze(snippet);
+  if (result.score > 0) {
+      return 'Positivo';
+  } else if (result.score < 0) {
+      return 'Negativo';
+  } else {
+      return 'Neutro';
+  }
+}
+
 export async function MonitorBrandMentions(req: Request, res: Response) {
   const { query } = req.body;
 
-  console.log(query);
   const options = {
     method: "GET",
     url: "https://real-time-web-search.p.rapidapi.com/search",
@@ -28,14 +39,16 @@ export async function MonitorBrandMentions(req: Request, res: Response) {
   };
 
   try {
-    // Realiza a busca de tweets que mencionam a marca
     const response = await axios.request(options);
 
-    res.json(response.data);
+    const dataWithSentiment = response.data.data.map((item: any) => ({
+      ...item,
+      sentiment: getSentiment(item.snippet),
+    }));
+
+    res.json({ ...response.data, data: dataWithSentiment });
   } catch (error) {
-    console.error("Erro ao buscar menções da marca no Twitter:", error);
-    res
-      .status(500)
-      .json({ error: "Erro ao buscar menções da marca no Twitter" });
+    console.error("Erro ao buscar menções da marca:", error);
+    res.status(500).json({ error: "Erro ao buscar menções da marca" });
   }
 }
