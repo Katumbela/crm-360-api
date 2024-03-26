@@ -6,6 +6,7 @@ import cors from "cors"; // Importe o módulo 'cors'
 import { GetUserById } from "./independentServices/get-user-by-id";
 import "dotenv/config";
 import { MonitorBrandMentions } from "./controllers/monitoring.brand.controller";
+import { getDDGMentions } from "./controllers/monitoring.brand.ddg.controller";
 
 const app = express();
 
@@ -26,6 +27,8 @@ route.post("/login", login);
 route.post("/signup", signUp);
 
 route.get("/monitoring", MonitorBrandMentions);
+
+route.get("/google", getDDGMentions);
 
 route.get("/user/:id", GetUserById);
 
