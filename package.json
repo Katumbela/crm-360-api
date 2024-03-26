@@ -15,6 +15,7 @@
     "puppeteer": "^22.6.0",
     "qrcode": "^1.5.3",
     "swagger-ui-express": "^5.0.0",
+    "twit": "^2.2.11",
     "whatsapp-web.js": "^1.23.0"
   },
   "scripts": {
