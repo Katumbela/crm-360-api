@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Request, Response } from "express";
 
-export async function MnitoringYoutube(req: Request, res: Response) {
+export async function getYoutubeVideos(req: Request, res: Response) {
   const { parametro } = req.body;
 
   if (!parametro) {

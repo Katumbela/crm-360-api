@@ -4,7 +4,8 @@ import { login } from './controllers';
 import { signUp } from './controllers/signup.controller';
 import cors from 'cors'; // Importe o módulo 'cors'
 import { GetUserById } from './independentServices/get-user-by-id';
-import { MnitoringYoutube } from './controllers/monitoring.controller';
+import { MnitoringYoutube, getYoutubeVideos } from './controllers/monitoring.yt.controller';
+import { getFacebookPosts } from './controllers/monitoring.fb.controller';
 
 const app = express();
 
@@ -22,7 +23,9 @@ route.post("/login", login);
 
 route.post("/signup", signUp);
 
-route.get("/monitoring", MnitoringYoutube);
+route.get("/monitoring-fb", getFacebookPosts);
+
+route.get("/monitoring-yt", getYoutubeVideos);
 
 route.get("/user/:id", GetUserById);
 
