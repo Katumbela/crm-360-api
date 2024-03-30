@@ -9,7 +9,7 @@ const signUpRepository: UserSignUpRepository =
   new FirebaseUserSignUpRepository(); // Declare a instância como do tipo correto
 const signUpUseCase = new SignUpUseCase(signUpRepository);
 
-async function signUp(req: Request, res: Response): Promise<void> {
+async function signUpUser(req: Request, res: Response): Promise<void> {
   const {
     team,
     email,
@@ -25,6 +25,8 @@ async function signUp(req: Request, res: Response): Promise<void> {
   } = req.body;
 
   try {
+    // Verifica se o usuário já existe
+
     // Cria um novo usuário no Firebase Authentication
     const userCredential = await auth.createUserWithEmailAndPassword(
       email,
@@ -61,7 +63,10 @@ async function signUp(req: Request, res: Response): Promise<void> {
     };
 
     // Salva os dados do usuário no Firestore
-    await firestore.collection("users").doc(user.uid).set(userData);
+    await firestore
+      .collection("users")
+      .doc(userData.id.substring(0, 4) + "_" + userData.company_name)
+      .set(userData);
     await firestore
       .collection("business")
       .doc(userData.id.substring(0, 4) + "_" + userData.company_name)
@@ -72,12 +77,18 @@ async function signUp(req: Request, res: Response): Promise<void> {
       user: userData,
     });
   } catch (error) {
-    // Retorna um indicador de falha e a mensagem de erro
-    console.error("Error:", error);
-    res.status(500).json({
-      error: "An error occurred while registering the user",
-    });
+    // Verifica o tipo de erro e envia uma resposta apropriada
+    if (error.code === "auth/email-already-in-use") {
+      res.status(400).json({
+        error: "Email address is already in use",
+      });
+    } else {
+      console.error("Error:", error);
+      res.status(500).json({
+        error: "An error occurred while registering the user",
+      });
+    }
   }
 }
 
-export { signUp };
+export { signUpUser };

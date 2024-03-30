@@ -1,7 +1,7 @@
 import express from "express";
 import { Router, Request, Response } from "express";
 import { login } from "./controllers";
-import { signUp } from "./controllers/signup.controller";
+import { signUpUser } from "./controllers/signup.controller";
 import cors from "cors"; // Importe o módulo 'cors'
 import { GetUserById } from "./independentServices/get-user-by-id";
 import "dotenv/config";
@@ -24,7 +24,7 @@ app.use(
 
 route.post("/login", login);
 
-route.post("/signup", signUp);
+route.post("/signup", signUpUser);
 
 route.get("/monitoring", MonitorBrandMentions);
 
