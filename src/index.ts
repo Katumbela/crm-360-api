@@ -7,6 +7,7 @@ import { GetUserById } from "./independentServices/get-user-by-id";
 import "dotenv/config";
 import { MonitorBrandMentions } from "./controllers/monitoring.brand.controller";
 import { getGMentions } from "./controllers/monitoring.brand.ddg.controller";
+import { getYoutubeVideos } from "./controllers/monitoring.yt.controller";
 
 const app = express();
 
@@ -27,6 +28,8 @@ route.post("/login", login);
 route.post("/signup", signUpUser);
 
 route.get("/monitoring", MonitorBrandMentions);
+
+route.get("/yt", getYoutubeVideos);
 
 route.get("/google", getGMentions);
 
