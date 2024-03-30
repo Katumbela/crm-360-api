@@ -33,8 +33,8 @@ export async function MonitorBrandMentions(req: Request, res: Response) {
     },
 
     headers: {
-      "X-RapidAPI-Key": "9d33715652msha31f124cb292d70p120a20jsn13f11eaa9b04",
-      "X-RapidAPI-Host": "real-time-web-search.p.rapidapi.com",
+      "X-RapidAPI-Key": process.env.X_RAPID_KEY,
+      "X-RapidAPI-Host":  process.env.X_RAPID_HOST,
     },
   };
 

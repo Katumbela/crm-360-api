@@ -1,12 +1,8 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import "dotenv/config";
 import { Request, Response } from "express";
-import Sentiment from "sentiment";
 
-const sentiment = new Sentiment();
-
-
-export async function getDDGMentions(req: Request, res: Response) {
+export async function getGMentions(req: Request, res: Response) {
   const { query } = req.body;
   const apiKey = process.env.GOOGLE_SEACRH_API;
   const searchEngineId = process.env.GOOGLE_CX;
@@ -17,7 +13,11 @@ export async function getDDGMentions(req: Request, res: Response) {
     const response = await axios.get(url);
     return res.json(response.data);
   } catch (error) {
-    console.error('Erro ao fazer a pesquisa no Google:', error);
+    if (axios.isAxiosError(error)) {
+      console.error('Erro ao fazer a pesquisa no Google:', error.response?.data);
+    } else {
+      console.error('Erro ao fazer a pesquisa no Google:', error.message);
+    }
     throw error;
   }
 }
