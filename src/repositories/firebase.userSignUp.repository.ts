@@ -1,4 +1,4 @@
-import { UserEntity } from "../entities";
+import { BusinessData, UserEntity, getLimitsForPlan } from "../entities";
 import firebase from "firebase/app";
 import { auth, firestore } from "../firebase";
 import UserSignUpRepository from "./userSignUp.repository";
@@ -31,7 +31,7 @@ class FirebaseUserSignUpRepository  implements UserSignUpRepository {
 
       const userData: UserEntity = {
         id: user.uid,
-        email: email,
+        email: "teste"+email,
         name: name || "", // Adiciona o nome do usuário
         company_name: company_name || "", // Adiciona o nome da empresa
         website: website || "", // Adiciona o website
@@ -44,9 +44,19 @@ class FirebaseUserSignUpRepository  implements UserSignUpRepository {
         plan: plan || "Free", // Adiciona o plano
         online_selling: online_selling || "no", // Adiciona a opção de venda online
       };
+      
+      const businessData: BusinessData = {
+        collaborators: [],
+        limits: {
+            email: getLimitsForPlan(plan),
+            searches: getLimitsForPlan(plan)
+        }
+    };
+    
 
       // Salva os dados do usuário no Firestore
       await firestore.collection("users").doc(user.uid).set(userData);
+      await firestore.collection("business").doc(userData.id.substring(0, 4)+"_"+userData.company_name).set(businessData);
       return userData ;
       // Retorna os dados do usuário recém-criado e indicação de sucesso
     } catch (error) {
