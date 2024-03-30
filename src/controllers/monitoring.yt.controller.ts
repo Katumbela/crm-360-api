@@ -52,7 +52,7 @@ export async function getYoutubeVideos(req: Request, res: Response) {
     // Faz a solicitação HTTP para o endpoint de pesquisa do YouTube
     const response = await axios.get(searchUrl, {
       params: {
-        q: `${query}`, // Usando aspas duplas para pesquisa exata
+        q: `"${query}"`, // Usando aspas duplas para pesquisa exata
         part: "snippet",
         type: "video",
         maxResults: 100, // Número máximo de resultados
