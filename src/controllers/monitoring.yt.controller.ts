@@ -5,6 +5,7 @@ import Sentiment from "sentiment";
 
 // Importa a biblioteca do Google Cloud Natural Language
 import { LanguageServiceClient } from '@google-cloud/language';
+import { Env } from "../dummy/env";
 
 
 const sentiment = new Sentiment();
@@ -56,7 +57,7 @@ export async function getYoutubeVideos(req: Request, res: Response) {
         part: "snippet",
         type: "video",
         maxResults: 100, // Número máximo de resultados
-        key: process.env.YT_API_KEY, // Substitua pela sua própria chave de API do YouTube
+        key: Env.YT_API_KEY, // Substitua pela sua própria chave de API do YouTube
       },
     });
 
@@ -71,7 +72,7 @@ export async function getYoutubeVideos(req: Request, res: Response) {
           params: {
             part: "snippet,statistics",
             id: item.id.videoId,
-            key: process.env.YT_API_KEY,
+            key: Env.YT_API_KEY,
           },
         });
 
@@ -85,7 +86,7 @@ export async function getYoutubeVideos(req: Request, res: Response) {
           params: {
             part: "snippet,statistics",
             id: videoDetails.snippet.channelId,
-            key: process.env.YT_API_KEY,
+            key: Env.YT_API_KEY,
           },
         });
 
