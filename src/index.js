@@ -9,7 +9,6 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 // Habilitar o CORSapp.use(cors({ origin: '*' }));
-
 app.use(cors({ origin: '*' }));
 
 
