@@ -12,6 +12,7 @@ const get_user_by_id_1 = require("./independentServices/get-user-by-id");
 require("dotenv/config");
 const monitoring_brand_controller_1 = require("./controllers/monitoring.brand.controller");
 const monitoring_brand_ddg_controller_1 = require("./controllers/monitoring.brand.ddg.controller");
+const monitoring_yt_controller_1 = require("./controllers/monitoring.yt.controller");
 const app = (0, express_1.default)();
 const route = (0, express_2.Router)();
 app.use(express_1.default.json());
@@ -21,8 +22,9 @@ app.use((0, cors_1.default)({
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos na solicitação
 }));
 route.post("/login", controllers_1.login);
-route.post("/signup", signup_controller_1.signUp);
+route.post("/signup", signup_controller_1.signUpUser);
 route.get("/monitoring", monitoring_brand_controller_1.MonitorBrandMentions);
+route.get("/yt", monitoring_yt_controller_1.getYoutubeVideos);
 route.get("/google", monitoring_brand_ddg_controller_1.getGMentions);
 route.get("/user/:id", get_user_by_id_1.GetUserById);
 route.get("/", (req, res) => {
